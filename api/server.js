@@ -1,14 +1,9 @@
 require('dotenv').config();
 
-// Set environment variables manually if not loaded
-if (!process.env.GOOGLE_CLIENT_ID) {
-  process.env.GOOGLE_CLIENT_ID = '184226661137-2f17bn0catpu8tgapmn3fke0b1fd96sf.apps.googleusercontent.com';
-  process.env.GOOGLE_CLIENT_SECRET = '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';
-  process.env.JWT_SECRET = 'mySuperSecretKey123';
-  process.env.MONGODB_URI = 'mongodb://localhost:27017/college-qa';
-  process.env.PORT = '5000';
-  process.env.NODE_ENV = 'development';
-}
+// Ensure required env vars exist in development; do not hardcode secrets
+process.env.MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/college-qa';
+process.env.PORT = process.env.PORT || '5000';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const express = require('express');
 const mongoose = require('mongoose');

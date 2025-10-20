@@ -57,6 +57,13 @@ answerSchema.index({ question: 1 });
 answerSchema.index({ author: 1 });
 answerSchema.index({ createdAt: -1 });
 
+// Virtual for related comments (used in population)
+answerSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'answer',
+});
+
 // Virtual for comment count
 answerSchema.virtual('commentCount', {
   ref: 'Comment',
