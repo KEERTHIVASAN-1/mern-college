@@ -1,50 +1,30 @@
 {
-  "name": "college-qa-client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "axios": "^1.12.2",
-    "date-fns": "^2.30.0",
-    "lucide-react": "^0.263.1",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-hot-toast": "^2.4.1",
-    "react-query": "^3.39.3",
-    "react-router-dom": "^6.30.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "college-qa-dashboard",
+  "version": "1.0.0",
+  "description": "Professional Q&A Dashboard for College",
+  "main": "api/server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd api && npm run dev",
+    "client": "cd client && npm start",
+    "install-all": "npm install && cd api && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build",
+    "start": "cd api && npm start"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
+  "keywords": [
+    "college",
+    "qa",
+    "dashboard",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "College Q&A Team",
+  "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.29",
-    "tailwindcss": "^3.4.18"
+    "concurrently": "^8.2.2"
   },
-  "proxy": "http://localhost:5000"
+  "dependencies": {
+    "mongodb": "^6.20.0"
+  }
 }
