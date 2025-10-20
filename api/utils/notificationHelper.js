@@ -50,10 +50,23 @@ const notifyTeachersNewAnswer = async (answer, question) => {
       return;
     }
     
+    // If question not provided, try to populate from answer
+    let relatedQuestion = question;
+    if (!relatedQuestion) {
+      try {
+        const populated = await answer.populate('question');
+        relatedQuestion = populated.question;
+      } catch (_) {
+        // ignore populate errors; fallback to generic message
+      }
+    }
+
     const notification = {
       type: 'answer',
       title: 'New Answer Posted',
-      message: `A new answer has been posted to the question: ${question.title}`,
+      message: relatedQuestion && relatedQuestion.title
+        ? `A new answer has been posted to the question: ${relatedQuestion.title}`
+        : 'A new answer has been posted',
       relatedId: answer._id,
       onModel: 'Answer',
       isRead: false,

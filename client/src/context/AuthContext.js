@@ -69,7 +69,9 @@ export const AuthProvider = ({ children }) => {
   const login = async () => {
     try {
       // Redirect to Google OAuth on the backend server
-      window.location.href = 'http://localhost:5000/api/auth/google';
+      const apiBaseUrl = process.env.REACT_APP_API_URL || '';
+      const prefix = apiBaseUrl.replace(/\/$/, '');
+      window.location.href = `${prefix}/api/auth/google`;
     } catch (error) {
       console.error('Login error:', error);
       toast.error('Login failed. Please try again.');
